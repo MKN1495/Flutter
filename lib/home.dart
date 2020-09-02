@@ -67,8 +67,57 @@ class Home extends StatelessWidget {
                   ),
                 ],
               ),
+              FlightImageAsset(),
+              FlightBookButton(),
             ],
           )),
     );
   }
+}
+
+class FlightImageAsset extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('images/flight.png');
+    Image image = Image(
+      image: assetImage,
+    );
+    return Container(
+      child: image,
+    );
+  }
+}
+
+class FlightBookButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 30),
+      child: RaisedButton(
+        color: Colors.deepOrange,
+        elevation: 6,
+        child: Text(
+          "Book your flight",
+          style: TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+              fontFamily: 'RobotoMono',
+              fontWeight: FontWeight.w400),
+        ),
+        onPressed: () => bookFlight(context),
+      ),
+    );
+  }
+}
+
+void bookFlight(BuildContext context) {
+  var alertDialog = AlertDialog(
+    title: Text("Flight Booked Successfully"),
+    content: Text("Have a pleasant flight"),
+  );
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) => alertDialog,
+  );
 }
